@@ -12,17 +12,8 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 import { useLogout } from "@/features/auth/hooks/use-logout";
+import { getInitials } from "@/lib/format";
 import type { User } from "@/types/user";
-
-function getInitials(name: string) {
-  return name
-    .split(" ")
-    .map((part) => part[0])
-    .filter(Boolean)
-    .slice(0, 2)
-    .join("")
-    .toUpperCase();
-}
 
 export function UserMenu({ user }: { user: User }) {
   const logout = useLogout();

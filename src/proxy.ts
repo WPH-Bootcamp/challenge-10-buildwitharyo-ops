@@ -3,10 +3,16 @@ import type { NextRequest } from "next/server";
 
 import { TOKEN_COOKIE } from "@/lib/auth/cookie-name";
 
-const protectedRoutes = ["/cart", "/checkout", "/orders", "/profile"];
+const protectedRoutes = [
+  "/cart",
+  "/checkout",
+  "/orders",
+  "/profile",
+  "/payment-success",
+];
 const authRoutes = ["/login", "/register"];
 
-export function middleware(request: NextRequest) {
+export function proxy(request: NextRequest) {
   const token = request.cookies.get(TOKEN_COOKIE)?.value;
   const { pathname } = request.nextUrl;
 
@@ -34,6 +40,7 @@ export const config = {
     "/checkout/:path*",
     "/orders/:path*",
     "/profile/:path*",
+    "/payment-success",
     "/login",
     "/register",
   ],
